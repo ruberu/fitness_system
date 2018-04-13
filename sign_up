@@ -1,0 +1,16 @@
+import sqlite3
+conn = sqlite3.connect("sign.db")
+cur = conn.cursor()
+
+def sign_up():
+	name = input("Full name: ")
+	email = input("Email: ")
+	uname = input("Username: ")
+	passw = input("Password: ")
+	cur.execute("CREATE TABLE IF NOT EXISTS FitSys(name TEXT, email TEXT, uname TEXT, passw TEXT)")
+	cur.execute("INSERT INTO FitSys VALUES (?, ?, ?, ?)",(name, email, uname, passw))
+	conn.commit()
+	cur.close()
+	conn.close()
+
+sign_up()
